@@ -1,233 +1,645 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>{{ Qiming Wang }} — PhD Student, Computer Science</title>
-  <meta name="description" content="{{ One-sentence summary: PhD student at Cardiff University researching computer-vision bruise analysis }}" />
-  <meta name="author" content="Qiming Wang" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='80'>🧠</text></svg>">
-  <meta property="og:title" content="Qiming Wang — PhD Student" />
-  <meta property="og:description" content="{{ Same as description }}" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://{{your-github-username}}.github.io/" />
-  <style>
-    :root{
-      --bg: #0b0c0e; --card:#13151a; --text:#eaecef; --muted:#9aa3af; --link:#8ab4ff; --accent:#6ee7b7; --border:#22252d;
-    }
-    :root.light{
-      --bg:#ffffff; --card:#f7f7f9; --text:#0b0c0e; --muted:#586069; --link:#1b66d1; --accent:#0ea5e9; --border:#e5e7eb;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Noto Sans",sans-serif}
-    a{color:var(--link);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .container{max-width:1000px;margin:0 auto;padding:24px}
-    header{position:sticky;top:0;background:linear-gradient(to bottom,var(--bg),color-mix(in srgb,var(--bg),transparent 30%));backdrop-filter:saturate(140%) blur(8px);z-index:10;border-bottom:1px solid var(--border)}
-    .nav{display:flex;align-items:center;gap:16px;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:12px}
-    .avatar{width:44px;height:44px;border-radius:50%;border:2px solid var(--border);object-fit:cover;background:#ddd}
-    .navlinks{display:flex;gap:16px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid var(--border);border-radius:12px;background:var(--card);color:var(--text);text-decoration:none}
-    .btn:hover{transform:translateY(-1px)}
-    .ghost{background:transparent}
-    main section{padding:56px 0;border-bottom:1px dashed var(--border)}
-    h1{font-size:2.2rem;margin:.2rem 0}
-    h2{font-size:1.6rem;margin:0 0 12px}
-    h3{font-size:1.1rem;margin:18px 0 6px}
-    p{margin:0 0 12px}
-    .lead{font-size:1.15rem;color:var(--muted)}
-    .grid{display:grid;gap:16px}
-    @media(min-width:768px){.grid.cols-2{grid-template-columns:1.2fr .8fr}.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
-    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px}
-    .kpis{display:flex;gap:14px;flex-wrap:wrap}
-    .kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 12px}
-    .tag{display:inline-block;font-size:.85rem;color:var(--muted);border:1px solid var(--border);border-radius:999px;padding:4px 10px;margin:4px 6px 0 0}
-    .list{margin:0;padding-left:18px}
-    .list li{margin-bottom:10px}
-    .pub{margin-bottom:14px}
-    .pub b{display:block}
-    footer{padding:40px 0;color:var(--muted);text-align:center}
-    .row{display:flex;gap:10px;flex-wrap:wrap}
-    .pill{padding:6px 10px;border:1px solid var(--border);border-radius:999px;color:var(--muted)}
-    .muted{color:var(--muted)}
-    .right{margin-left:auto}
-    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,monospace}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Qiming Wang — PhD Student, Computer Science</title>
+  <meta name="description" content="PhD student in Computer Science at Cardiff University researching computer vision for medical forensics, including bruise analysis with zero-shot, unsupervised and self-supervised learning.">
+  <meta name="author" content="Qiming Wang">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#faf8ff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121318" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23475d91'/><text x='16' y='21' fill='%23fff' font-family='Arial,sans-serif' font-size='13' font-weight='700' text-anchor='middle'>QW</text></svg>">
+  <meta property="og:title" content="Qiming Wang — PhD Student">
+  <meta property="og:description" content="PhD student in Computer Science at Cardiff University researching computer vision for medical forensics, including bruise analysis with zero-shot, unsupervised and self-supervised learning.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://qmwang1.github.io/">
+  <meta property="og:image" content="https://qmwang1.github.io/avatar.jpg">
+
   <script>
-    // Theme: remember preference
-    const applyTheme = (t)=>document.documentElement.classList.toggle('light', t==='light');
-    const saved = localStorage.getItem('theme'); if(saved) applyTheme(saved);
-    function toggleTheme(){
-      const next = document.documentElement.classList.contains('light') ? 'dark' : 'light';
-      applyTheme(next); localStorage.setItem('theme', next);
-    }
-    // Smooth scroll
-    document.addEventListener('click', e=>{
-      const a = e.target.closest('a[href^="#"]'); if(!a) return;
-      const el = document.querySelector(a.getAttribute('href')); if(!el) return;
-      e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'});
-      history.pushState(null,'',a.getAttribute('href'));
-    });
+    // Apply a saved theme before the first paint (no flash). Without one, the page follows the OS.
+    document.documentElement.classList.add("js");
+    try {
+      var savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "light" || savedTheme === "dark") document.documentElement.dataset.theme = savedTheme;
+    } catch (e) {}
   </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500&amp;display=swap">
+
+  <style>
+    /* ===================================================================
+       1. Tokens — Material 3
+       Colours generated with Google's material-color-utilities from the
+       seed #3D5A99 (scheme: tonal spot). Only the roles used here are listed.
+       =================================================================== */
+    :root {
+      color-scheme: light;
+      --md-sys-color-primary: #475d91;
+      --md-sys-color-on-primary: #ffffff;
+      --md-sys-color-primary-container: #d9e2ff;
+      --md-sys-color-secondary: #575e71;
+      --md-sys-color-secondary-container: #dce2f9;
+      --md-sys-color-on-secondary-container: #404659;
+      --md-sys-color-surface: #faf8ff;
+      --md-sys-color-on-surface: #1a1b20;
+      --md-sys-color-on-surface-variant: #44464f;
+      --md-sys-color-surface-container: #eeedf4;
+      --md-sys-color-surface-container-high: #e8e7ef;
+      --md-sys-color-outline-variant: #c5c6d0;
+
+      --font: "Google Sans Flex", Roboto, "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+      --shape-small: 8px;      /* chips */
+      --shape-medium: 12px;    /* cards */
+      --shape-full: 9999px;    /* buttons */
+      --motion: 200ms cubic-bezier(.2, 0, 0, 1);   /* standard easing */
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        color-scheme: dark;
+        --md-sys-color-primary: #b0c6ff;
+        --md-sys-color-on-primary: #142e60;
+        --md-sys-color-primary-container: #2e4578;
+        --md-sys-color-secondary: #c0c6dc;
+        --md-sys-color-secondary-container: #404659;
+        --md-sys-color-on-secondary-container: #dce2f9;
+        --md-sys-color-surface: #121318;
+        --md-sys-color-on-surface: #e2e2e9;
+        --md-sys-color-on-surface-variant: #c5c6d0;
+        --md-sys-color-surface-container: #1e1f25;
+        --md-sys-color-surface-container-high: #282a2f;
+        --md-sys-color-outline-variant: #44464f;
+      }
+    }
+
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --md-sys-color-primary: #b0c6ff;
+      --md-sys-color-on-primary: #142e60;
+      --md-sys-color-primary-container: #2e4578;
+      --md-sys-color-secondary: #c0c6dc;
+      --md-sys-color-secondary-container: #404659;
+      --md-sys-color-on-secondary-container: #dce2f9;
+      --md-sys-color-surface: #121318;
+      --md-sys-color-on-surface: #e2e2e9;
+      --md-sys-color-on-surface-variant: #c5c6d0;
+      --md-sys-color-surface-container: #1e1f25;
+      --md-sys-color-surface-container-high: #282a2f;
+      --md-sys-color-outline-variant: #44464f;
+    }
+
+    /* ===================================================================
+       2. Base
+       =================================================================== */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+    }
+
+    body {
+      margin: 0;
+      background: var(--md-sys-color-surface);
+      color: var(--md-sys-color-on-surface);
+      font: 400 1rem/1.5rem var(--font);            /* body-large */
+      letter-spacing: .5px;
+    }
+
+    h1, h2, h3, p, ul { margin: 0; }
+    ul { padding: 0; list-style: none; }
+    h1, h2, h3 { text-wrap: balance; }
+    strong { font-weight: 500; }                    /* only 400 and 500 are loaded */
+    p { max-width: 70ch; text-wrap: pretty; }      /* comfortable line length */
+    svg { flex: none; }
+
+    a { color: var(--md-sys-color-primary); text-underline-offset: .2em; border-radius: 4px; }   /* radius shapes the focus ring */
+    a:hover { text-decoration-thickness: 2px; }
+
+    :focus-visible {
+      outline: 3px solid var(--md-sys-color-secondary);
+      outline-offset: 2px;
+    }
+
+    section[id] { scroll-margin-top: 80px; }   /* clears the sticky top app bar */
+
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+      overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+    }
+
+    /* ===================================================================
+       3. Layout — one centred column; margins follow M3 window sizes
+       =================================================================== */
+    .container {
+      max-width: 808px;              /* 760px content + 2 × 24px margins */
+      margin-inline: auto;
+      padding-inline: 16px;          /* compact windows: 16px margins */
+    }
+    @media (min-width: 600px) {
+      .container { padding-inline: 24px; }   /* medium and expanded: 24px */
+    }
+
+    main.container { display: grid; gap: 16px; }
+
+    /* ===================================================================
+       4. Components
+       =================================================================== */
+
+    /* --- Small top app bar ------------------------------------------- */
+    .app-bar {
+      position: sticky; top: 0; z-index: 1;
+      background: var(--md-sys-color-surface);
+    }
+    .app-bar .container {
+      display: flex; align-items: center; gap: 8px;
+      height: 64px;
+      padding-right: 12px;                       /* icon button sits 4px in */
+    }
+    @media (min-width: 600px) {
+      .app-bar .container { padding-right: 20px; }
+    }
+    .app-bar-title {
+      flex: none;
+      color: var(--md-sys-color-on-surface);
+      font: 500 1rem/1.5rem var(--font);         /* title-medium on phones … */
+      letter-spacing: .15px;
+      text-decoration: none;
+    }
+    .app-bar-title:hover { text-decoration: underline; }
+    @media (max-width: 359px) {
+      .app-bar-title { display: none; }          /* very narrow phones: the hero shows the name */
+    }
+    @media (min-width: 600px) {
+      .app-bar-title { font: 400 1.375rem/1.75rem var(--font); letter-spacing: 0; }   /* … title-large above */
+    }
+    /* If more sections are enabled than fit on a phone, the links scroll sideways. */
+    .app-bar nav { min-width: 0; margin-left: auto; overflow-x: auto; scrollbar-width: none; padding: 4px; }
+    .app-bar nav ul { display: flex; gap: 4px; }
+
+    /* Once the page scrolls, the bar fills with a container tone one step above
+       the cards, so content passing under it stays separated. Uses scroll-driven
+       animations where supported; elsewhere the bar simply stays on surface. */
+    @supports (animation-timeline: scroll()) {
+      .app-bar { animation: app-bar-scrolled linear both; animation-timeline: scroll(); animation-range: 0 48px; }
+    }
+    @keyframes app-bar-scrolled {
+      to { background: var(--md-sys-color-surface-container-high); }
+    }
+
+    /* --- Buttons: filled, tonal, text -------------------------------- */
+    .button {
+      position: relative;
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 40px; padding: 0 16px;              /* phones: M3 Expressive small button */
+      border-radius: var(--shape-full);
+      font: 500 .875rem/1.25rem var(--font);      /* label-large */
+      letter-spacing: .1px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .button svg { margin-right: 8px; }            /* icon–label space */
+    @media (min-width: 600px) {
+      .button { padding: 0 24px; }
+      .button svg { margin-left: -8px; }          /* 16px on the icon side */
+    }
+    .button.filled { background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); }
+    .button.tonal { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
+    .button.text { padding: 0 12px; color: var(--md-sys-color-on-surface-variant); }
+
+    /* State layer: an overlay of the content colour (hover 8%, focus/press 10%). */
+    .button::before, .icon-button::before, a.chip::before {
+      content: "";
+      position: absolute; inset: 0;
+      border-radius: inherit;
+      background: currentColor;
+      opacity: 0;
+      transition: opacity var(--motion);
+    }
+    .button:hover::before, .icon-button:hover::before, a.chip:hover::before { opacity: .08; }
+    .button:focus-visible::before, .icon-button:focus-visible::before, a.chip:focus-visible::before,
+    .button:active::before, .icon-button:active::before, a.chip:active::before { opacity: .1; }
+
+    /* Invisible 48px touch targets around 40px buttons and 32px chips. */
+    .button::after, .icon-button::after, a.chip::after { content: ""; position: absolute; inset: -4px 0; }
+    .icon-button::after { inset: -4px; }
+    a.chip::after { inset: -8px 0; }
+
+    /* --- Skip link (a filled button that appears on focus) ----------- */
+    .skip-link { position: absolute; top: 12px; left: 16px; z-index: 2; transform: translateY(-200%); }
+    .skip-link:focus { transform: none; }
+
+    /* --- Icon button (theme toggle) ---------------------------------- */
+    .icon-button {
+      position: relative; flex: none;
+      display: inline-grid; place-items: center;
+      width: 40px; height: 40px; margin: 4px;      /* 48px slot in the app bar */
+      padding: 0; border: 0; border-radius: var(--shape-full);
+      background: none;
+      color: var(--md-sys-color-on-surface-variant);
+      cursor: pointer;
+    }
+    :root:not(.js) .theme-toggle { display: none; }   /* the toggle needs JavaScript */
+    .theme-toggle .icon-light { display: none; }
+    :root[data-theme="dark"] .theme-toggle .icon-dark { display: none; }
+    :root[data-theme="dark"] .theme-toggle .icon-light { display: block; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .theme-toggle .icon-dark { display: none; }
+      :root:not([data-theme="light"]) .theme-toggle .icon-light { display: block; }
+    }
+
+    /* Windows High Contrast removes button fills; keep their outlines visible. */
+    @media (forced-colors: active) {
+      .button, .icon-button { border: 1px solid; }
+    }
+
+    /* --- Hero (profile) ---------------------------------------------- */
+    .hero { display: grid; gap: 24px; padding-block: 24px 32px; }
+    .avatar {
+      width: 128px; height: 128px;
+      object-fit: cover;
+      border-radius: 50%;
+      background: var(--md-sys-color-primary-container);
+    }
+    .hero h1 {
+      font: 500 2.25rem/2.75rem var(--font);       /* display-small, emphasized */
+      letter-spacing: 0;
+    }
+    .role {
+      margin-top: 4px;
+      color: var(--md-sys-color-on-surface-variant);
+      font: 500 1rem/1.5rem var(--font);           /* title-medium */
+      letter-spacing: .15px;
+    }
+    .bio { margin-top: 16px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+
+    @media (min-width: 600px) {
+      .hero { grid-template-columns: auto 1fr; align-items: start; column-gap: 32px; padding-block: 48px; }
+      .avatar { width: 176px; height: 176px; }
+    }
+
+    /* --- Cards ------------------------------------------------------- */
+    .card {
+      display: grid; gap: 16px;
+      padding: 16px;
+      border-radius: var(--shape-medium);
+      background: var(--md-sys-color-surface-container);
+    }
+    @media (min-width: 600px) {
+      .card { padding: 24px; }
+    }
+    .card h2 {
+      font: 400 1.375rem/1.75rem var(--font);      /* title-large */
+      letter-spacing: 0;
+    }
+    .card-intro { margin-top: -8px; color: var(--md-sys-color-on-surface-variant); }
+
+    /* --- Chips ------------------------------------------------------- */
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      position: relative;
+      display: inline-flex; align-items: center;
+      height: 32px; padding: 0 16px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      border-radius: var(--shape-small);
+      color: var(--md-sys-color-on-surface-variant);
+      font: 500 .875rem/1.25rem var(--font);       /* label-large */
+      letter-spacing: .1px;
+    }
+    a.chip { color: var(--md-sys-color-on-surface); text-decoration: none; }
+    a.chip svg { margin: 0 8px 0 -8px; color: var(--md-sys-color-primary); }   /* 8px icon side, 8px to label */
+
+    /* Labelled chip set (Interests): label above the chips, beside them from 600px */
+    .chip-group { display: grid; gap: 8px; }
+    .chip-group h3 {
+      color: var(--md-sys-color-on-surface-variant);
+      font: 500 .875rem/1.25rem var(--font);       /* title-small */
+      letter-spacing: .1px;
+    }
+    @media (min-width: 600px) {
+      .chip-group { grid-template-columns: 128px 1fr; gap: 16px; align-items: baseline; }
+    }
+
+    /* --- Lists (news, contact, drafted sections) ---------------------- */
+    .list { display: grid; gap: 24px; }
+    .list-item { display: flex; align-items: center; gap: 16px; }
+    .list-item > svg { color: var(--md-sys-color-on-surface-variant); }
+    .list-item > div { display: grid; gap: 4px; justify-items: start; min-width: 0; }
+    .overline {
+      color: var(--md-sys-color-on-surface-variant);
+      font: 500 .75rem/1rem var(--font);           /* label-medium */
+      letter-spacing: .5px;
+    }
+    .list-item h3 {
+      font: 500 1rem/1.5rem var(--font);           /* title-medium */
+      letter-spacing: .15px;
+    }
+    .supporting { color: var(--md-sys-color-on-surface-variant); }   /* secondary text */
+    p.supporting {
+      font: 400 .875rem/1.25rem var(--font);       /* body-medium */
+      letter-spacing: .25px;
+    }
+    .list-item .chips { margin-top: 8px; }
+
+    /* --- Footer ------------------------------------------------------ */
+    footer {
+      padding-block: 32px 40px;
+      color: var(--md-sys-color-on-surface-variant);
+      font: 400 .875rem/1.25rem var(--font);       /* body-medium */
+      letter-spacing: .25px;
+    }
+  </style>
+
   <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"Person",
-    "name":"Qiming Wang",
-    "affiliation":{"@type":"CollegeOrUniversity","name":"Cardiff University"},
-    "jobTitle":"PhD Student",
-    "url":"https://{{your-github-username}}.github.io/",
-    "sameAs":["{{ Google Scholar URL }}","{{ ORCID URL }}","{{ LinkedIn URL }}","{{ GitHub URL }}"]
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Qiming Wang",
+    "jobTitle": "PhD Student",
+    "affiliation": { "@type": "CollegeOrUniversity", "name": "Cardiff University" },
+    "url": "https://qmwang1.github.io/",
+    "image": "https://qmwang1.github.io/avatar.jpg",
+    "email": "mailto:wangq79@cardiff.ac.uk",
+    "sameAs": [
+      "https://github.com/chandlerwang666",
+      "https://www.linkedin.com/in/qimingwang01"
+    ]
   }
   </script>
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <div class="brand">
-        <img class="avatar" src="avatar.png" alt="Avatar" />
-        <div>
-          <strong>Qiming Wang</strong><br>
-          <span class="muted">PhD Student · Computer Science · Cardiff University</span>
-        </div>
-      </div>
-      <nav class="navlinks">
-        <a class="pill" href="#about">About</a>
-        <a class="pill" href="#research">Research</a>
-        <!-- <a class="pill" href="#publications">Publications</a>
-        <a class="pill" href="#projects">Projects</a>
-        <a class="pill" href="#datasets">Datasets</a> -->
-        <a class="pill" href="#contact">Contact</a>
-        <button class="pill" onclick="toggleTheme()" aria-label="Toggle theme">🌓 Theme</button>
+  <header class="app-bar">
+    <a class="button filled skip-link" href="#main">Skip to content</a>
+    <div class="container">
+      <a class="app-bar-title" href="#about">Qiming Wang</a>
+      <nav aria-label="Sections">
+        <ul>
+          <li><a class="button text" href="#about">About</a></li>
+          <!-- <li><a class="button text" href="#research">Research</a></li>
+          <li><a class="button text" href="#publications">Publications</a></li>
+          <li><a class="button text" href="#projects">Projects</a></li>
+          <li><a class="button text" href="#datasets">Datasets</a></li> -->
+          <li><a class="button text" href="#contact">Contact</a></li>
+        </ul>
       </nav>
+      <button class="icon-button theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme">
+        <svg class="icon-dark" viewBox="0 -960 960 960" width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q8 0 17 .5t23 1.5q-36 32-56 79t-20 99q0 90 63 153t153 63q52 0 99-18.5t79-51.5q1 12 1.5 19.5t.5 14.5q0 150-105 255T480-120Zm0-60q109 0 190-67.5T771-406q-25 11-53.67 16.5Q688.67-384 660-384q-114.69 0-195.34-80.66Q384-545.31 384-660q0-24 5-51.5t18-62.5q-98 27-162.5 109.5T180-480q0 125 87.5 212.5T480-180Zm-4-297Z"/></svg>
+        <svg class="icon-light" viewBox="0 -960 960 960" width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M579-381q41-41 41-99t-41-99q-41-41-99-41t-99 41q-41 41-41 99t41 99q41 41 99 41t99-41Zm-240.5 42.5Q280-397 280-480t58.5-141.5Q397-680 480-680t141.5 58.5Q680-563 680-480t-58.5 141.5Q563-280 480-280t-141.5-58.5ZM200-450H40v-60h160v60Zm720 0H760v-60h160v60ZM450-760v-160h60v160h-60Zm0 720v-160h60v160h-60ZM262-658l-100-97 43-44 96 100-39 41Zm494 496-98-100 41-41 99 98-42 43Zm-99-537 98-99 44 42-99 98-43-41ZM162-205l99-98 42 42-98 99-43-43Zm318-275Z"/></svg>
+      </button>
     </div>
   </header>
 
-  <main class="container">
-    <section id="about" class="grid cols-2">
+  <main class="container" id="main">
+    <!-- ============ About ============ -->
+    <section class="hero" id="about">
+      <img class="avatar" src="avatar.jpg" width="2433" height="2433" alt="Portrait of Qiming Wang">
       <div>
         <h1>Qiming Wang</h1>
-        <p class="lead">
+        <p class="role">PhD Student · Computer Science<br>
+          Cardiff University</p>
+        <p class="bio">
           I am a PhD student in Computer Science at Cardiff University. My research focuses on
-          computer vision methods for medical forensics, with an emphasis on
-          zero-shot, unsupervised and self-supervised learning (e.g., DINO(v2)), CLIP, SAM).
+          computer vision methods for medical forensics, with an emphasis on zero-shot,
+          unsupervised and self-supervised learning (e.g., DINO/DINOv2, CLIP, SAM).
         </p>
-        <div class="row" style="margin:14px 0;">
-          <a class="btn" href="MyCV.pdf" target="_blank" rel="noopener">📄 CV</a>
-          <!-- <a class="btn ghost" href="{{ Google Scholar URL }}" target="_blank" rel="noopener">🎓 Scholar</a> -->
-          <a class="btn ghost" href="{{ www.github.com/chandlerwang666 }}" target="_blank" rel="noopener">🐙 GitHub</a>
-          <a class="btn ghost" href="{{ www.linkedin.com/in/qimingwang01 }}" target="_blank" rel="noopener">🔗 LinkedIn</a>
-        </div>
-        <div class="kpis">
-          <div class="kpi"><b>Research Areas</b><br><span class="muted">Computer Vision · Deep Learning · Medical/Forensic AI</span></div>
-          <div class="kpi"><b>Tooling</b><br><span class="muted">PyTorch · ViTs · SAM · HPC</span></div>
+        <div class="actions">
+          <a class="button filled" href="MyCV.pdf" target="_blank" rel="noopener">
+            <svg viewBox="0 -960 960 960" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M319-250h322v-60H319v60Zm0-170h322v-60H319v60ZM220-80q-24 0-42-18t-18-42v-680q0-24 18-42t42-18h361l219 219v521q0 24-18 42t-42 18H220Zm331-554v-186H220v680h520v-494H551ZM220-820v186-186 680-680Z"/></svg>
+            CV<span class="visually-hidden"> (PDF, opens in a new tab)</span>
+          </a>
+          <!-- <a class="button tonal" href="{{ Google Scholar URL }}" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+            Scholar<span class="visually-hidden"> (opens in a new tab)</span>
+          </a> -->
+          <a class="button tonal" href="https://github.com/chandlerwang666" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            GitHub<span class="visually-hidden"> (opens in a new tab)</span>
+          </a>
+          <a class="button tonal" href="https://www.linkedin.com/in/qimingwang01" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn<span class="visually-hidden"> (opens in a new tab)</span>
+          </a>
         </div>
       </div>
-      <div class="card">
+    </section>
+
+    <!-- ============ Interests ============ -->
+    <section class="card">
+      <h2>Interests</h2>
+      <div class="chip-group">
+        <h3>Research areas</h3>
+        <ul class="chips">
+          <li class="chip">Computer Vision</li>
+          <li class="chip">Deep Learning</li>
+          <li class="chip">Medical/Forensic AI</li>
+        </ul>
+      </div>
+      <div class="chip-group">
+        <h3>Tooling</h3>
+        <ul class="chips">
+          <li class="chip">PyTorch</li>
+          <li class="chip">ViTs</li>
+          <li class="chip">SAM</li>
+          <li class="chip">HPC</li>
+        </ul>
+      </div>
+      <div class="chip-group">
         <h3>Keywords</h3>
-        <div>
-          <span class="tag">Bruise analysis</span>
-          <span class="tag">Unsupervised learning</span>
-          <span class="tag">Self-supervised ViT</span>
-          <span class="tag">Segmentation</span>
-          <span class="tag">Zero-shot</span>
-        </div>
-        <h3 style="margin-top:16px;">Activities</h3>
-        <ul class="list">
-          <li><b>Aug 2025</b> — <a class="btn" href="2025_Cardiff_Workshop_Poster.pdf" target="_blank" rel="noopener">Poster</a> Presented @ BMVA Computer Vision Summer School.</li>
+        <ul class="chips">
+          <li class="chip">Bruise analysis</li>
+          <li class="chip">Unsupervised learning</li>
+          <li class="chip">Self-supervised ViT</li>
+          <li class="chip">Segmentation</li>
+          <li class="chip">Zero-shot</li>
         </ul>
       </div>
     </section>
 
-    <!-- <section id="research">
-      <h2>Research</h2>
-      <div class="grid cols-2">
-        <div class="card">
-          <h3>Self-supervised bruise segmentation</h3>
-          <p>Exploring DINO/DINOv2 with LoRA adapters for bruise localisation and mask refinement, benchmarked with IoU/F1 and a dual-circle evaluation.</p>
-          <p class="muted mono">PyTorch · ViT · LoRA · SAM · CLIP-SAM</p>
-        </div>
-        <div class="card">
-          <h3>Dataset curation & evaluation</h3>
-          <p>Curating multi-source bruise imagery; converting to VOC/YOLO/ImageNet styles; reproducible scripts for training and evaluation.</p>
-          <p class="muted mono">HAM10000 · SD-198 · Custom bruise sets</p>
-        </div>
-      </div>
-    </section> -->
-
-    <!-- <section id="publications">
-      <h2>Selected Publications</h2>
-      <div class="pub">
-        <b>{{ Your Paper Title }}</b>
-        <span class="muted">Author(s). Venue, Year.</span><br>
-        <a href="{{ PDF or DOI }}" target="_blank" rel="noopener">PDF/DOI</a> ·
-        <a href="{{ Code URL }}" target="_blank" rel="noopener">Code</a>
-      </div>
-      <div class="pub">
-        <b>{{ Another Paper Title }}</b>
-        <span class="muted">Author(s). Venue, Year.</span><br>
-        <a href="{{ PDF or DOI }}" target="_blank" rel="noopener">PDF/DOI</a> ·
-        <a href="{{ Project Page }}" target="_blank" rel="noopener">Project</a>
-      </div>
-      <p class="muted">Full list on <a href="{{ Google Scholar URL }}" target="_blank" rel="noopener">Google Scholar</a>.</p>
-    </section> -->
-
-    <!-- <section id="projects">
-      <h2>Projects</h2>
-      <div class="grid cols-3">
-        <article class="card">
-          <h3>LoRA-DINOv2 for Bruises</h3>
-          <p>Parameter-efficient fine-tuning of ViTs for bruise localisation.</p>
-          <a href="{{ GitHub repo }}" class="btn">Repository</a>
-        </article>
-        <article class="card">
-          <h3>CLIP-SAM Pipeline</h3>
-          <p>Text-guided region proposals + SAM refinement for masks.</p>
-          <a href="{{ GitHub repo }}" class="btn">Repository</a>
-        </article>
-        <article class="card">
-          <h3>Dual-Circle Evaluator</h3>
-          <p>Objective bruise mask scoring with inner/outer constraints.</p>
-          <a href="{{ GitHub repo }}" class="btn">Repository</a>
-        </article>
-      </div>
-    </section> -->
-
-    <!-- <section id="datasets">
-      <h2>Datasets</h2>
+    <!-- ============ News ============ -->
+    <section class="card" id="news">
+      <h2>News</h2>
       <ul class="list">
-        <li><b>AllBruiseTrainingData</b> — ImageNet/VOC/YOLO formats; <span class="muted">folder structure: Unlabelled/uni_dataset, YOLOAnnotation, circle_mask, dual-circle evaluation</span>. <a href="{{ repo or request-link }}">Access</a></li>
-        <li><b>HAM10000 (processed)</b> — scripts for VOC-style conversion and splits. <a href="{{ repo }}">Repo</a></li>
-        <li><b>SD-198 (processed)</b> — pre-processing and label maps. <a href="{{ repo }}">Repo</a></li>
+        <!-- Newest first. To add an item, copy this <li> block. -->
+        <li class="list-item">
+          <div>
+            <time class="overline" datetime="2025-08">Aug 2025</time>
+            <p>Presented a poster at BMVA Computer Vision Summer School.</p>
+            <p class="chips">
+              <a class="chip" href="2025_Cardiff_Workshop_Poster.pdf" target="_blank" rel="noopener">
+                <svg viewBox="0 -960 960 960" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M331-431h37v-83h48q15.73 0 26.36-10.64Q453-535.28 453-551v-48q0-15.72-10.64-26.36Q431.73-636 416-636h-85v205Zm37-120v-48h48v48h-48Zm129 120h84q15 0 26-10.64 11-10.63 11-26.36v-131q0-15.72-11-26.36Q596-636 581-636h-84v205Zm37-37v-131h47v131h-47Zm133 37h37v-83h50v-37h-50v-48h50v-37h-87v205ZM260-200q-24 0-42-18t-18-42v-560q0-24 18-42t42-18h560q24 0 42 18t18 42v560q0 24-18 42t-42 18H260Zm0-60h560v-560H260v560ZM140-80q-24 0-42-18t-18-42v-620h60v620h620v60H140Zm120-740v560-560Z"/></svg>
+                Poster<span class="visually-hidden"> (PDF, opens in a new tab)</span>
+              </a>
+            </p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ============ Drafts: to publish a section, delete the comment markers around it
+         and around its link in the top app bar. ============ -->
+
+    <!-- <section class="card" id="research">
+      <h2>Research</h2>
+      <ul class="list">
+        <li class="list-item">
+          <div>
+            <h3>Self-supervised bruise segmentation</h3>
+            <p>Exploring DINO/DINOv2 with LoRA adapters for bruise localisation and mask refinement, benchmarked with IoU/F1 and a dual-circle evaluation.</p>
+            <p class="supporting">PyTorch · ViT · LoRA · SAM · CLIP-SAM</p>
+          </div>
+        </li>
+        <li class="list-item">
+          <div>
+            <h3>Dataset curation &amp; evaluation</h3>
+            <p>Curating multi-source bruise imagery; converting to VOC/YOLO/ImageNet styles; reproducible scripts for training and evaluation.</p>
+            <p class="supporting">HAM10000 · SD-198 · Custom bruise sets</p>
+          </div>
+        </li>
       </ul>
     </section> -->
 
-    <section id="contact" class="grid cols-2">
-      <div>
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:{{ wangq79@cardiff.ac.uk }}"> WangQ79@cardiff.ac.uk </a></p>
-        <p>Office: 3.48, Abacws Building, Cardiff University</p>
-        <!-- <p>ORCID: <a href="{{ ORCID URL }}" target="_blank" rel="noopener">{{ ORCID ID }}</a></p> -->
-        <p>For collaboration, please get in touch.</p>
-      </div>
-      <div class="card">
-        <h3>Quick Links</h3>
-        <p><a href="#about">About</a> · <a href="#research">Research</a> · <a href="#publications">Publications</a> · <a href="#projects">Projects</a> · <a href="#datasets">Datasets</a></p>
-        <p class="muted">© <span id="year"></span> Qiming Wang </p>
-      </div>
+    <!-- <section class="card" id="publications">
+      <h2>Selected Publications</h2>
+      <ul class="list">
+        <li class="list-item">
+          <div>
+            <h3>{{ Your Paper Title }}</h3>
+            <p class="supporting">Author(s). Venue, Year.</p>
+            <p class="chips">
+              <a class="chip" href="{{ PDF or DOI }}" target="_blank" rel="noopener">PDF/DOI</a>
+              <a class="chip" href="{{ Code URL }}" target="_blank" rel="noopener">Code</a>
+            </p>
+          </div>
+        </li>
+        <li class="list-item">
+          <div>
+            <h3>{{ Another Paper Title }}</h3>
+            <p class="supporting">Author(s). Venue, Year.</p>
+            <p class="chips">
+              <a class="chip" href="{{ PDF or DOI }}" target="_blank" rel="noopener">PDF/DOI</a>
+              <a class="chip" href="{{ Project Page }}" target="_blank" rel="noopener">Project</a>
+            </p>
+          </div>
+        </li>
+      </ul>
+      <p class="supporting">Full list on <a href="{{ Google Scholar URL }}" target="_blank" rel="noopener">Google Scholar</a>.</p>
+    </section> -->
+
+    <!-- <section class="card" id="projects">
+      <h2>Projects</h2>
+      <ul class="list">
+        <li class="list-item">
+          <div>
+            <h3>LoRA-DINOv2 for Bruises</h3>
+            <p>Parameter-efficient fine-tuning of ViTs for bruise localisation.</p>
+            <p class="chips"><a class="chip" href="{{ GitHub repo }}" target="_blank" rel="noopener">Repository</a></p>
+          </div>
+        </li>
+        <li class="list-item">
+          <div>
+            <h3>CLIP-SAM Pipeline</h3>
+            <p>Text-guided region proposals + SAM refinement for masks.</p>
+            <p class="chips"><a class="chip" href="{{ GitHub repo }}" target="_blank" rel="noopener">Repository</a></p>
+          </div>
+        </li>
+        <li class="list-item">
+          <div>
+            <h3>Dual-Circle Evaluator</h3>
+            <p>Objective bruise mask scoring with inner/outer constraints.</p>
+            <p class="chips"><a class="chip" href="{{ GitHub repo }}" target="_blank" rel="noopener">Repository</a></p>
+          </div>
+        </li>
+      </ul>
+    </section> -->
+
+    <!-- <section class="card" id="datasets">
+      <h2>Datasets</h2>
+      <ul class="list">
+        <li class="list-item">
+          <div>
+            <p><strong>AllBruiseTrainingData</strong> — ImageNet/VOC/YOLO formats; <span class="supporting">folder structure: Unlabelled/uni_dataset, YOLOAnnotation, circle_mask, dual-circle evaluation</span>.</p>
+            <p class="chips"><a class="chip" href="{{ repo or request-link }}">Access</a></p>
+          </div>
+        </li>
+        <li class="list-item">
+          <div>
+            <p><strong>HAM10000 (processed)</strong> — scripts for VOC-style conversion and splits.</p>
+            <p class="chips"><a class="chip" href="{{ repo }}">Repo</a></p>
+          </div>
+        </li>
+        <li class="list-item">
+          <div>
+            <p><strong>SD-198 (processed)</strong> — pre-processing and label maps.</p>
+            <p class="chips"><a class="chip" href="{{ repo }}">Repo</a></p>
+          </div>
+        </li>
+      </ul>
+    </section> -->
+
+    <!-- ============ Contact ============ -->
+    <section class="card" id="contact">
+      <h2>Contact</h2>
+      <p class="card-intro">For collaboration, please get in touch.</p>
+      <ul class="list">
+        <li class="list-item">
+          <svg viewBox="0 -960 960 960" width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M140-160q-24 0-42-18t-18-42v-520q0-24 18-42t42-18h680q24 0 42 18t18 42v520q0 24-18 42t-42 18H140Zm340-302L140-685v465h680v-465L480-462Zm0-60 336-218H145l335 218ZM140-685v-55 520-465Z"/></svg>
+          <div>
+            <span class="overline">Email</span>
+            <a href="mailto:wangq79@cardiff.ac.uk">WangQ79@cardiff.ac.uk</a>
+          </div>
+        </li>
+        <li class="list-item">
+          <svg viewBox="0 -960 960 960" width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M529.5-510.5Q550-531 550-560t-20.5-49.5Q509-630 480-630t-49.5 20.5Q410-589 410-560t20.5 49.5Q451-490 480-490t49.5-20.5ZM480-159q133-121 196.5-219.5T740-552q0-118-75.5-193T480-820q-109 0-184.5 75T220-552q0 75 65 173.5T480-159Zm0 79Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"/></svg>
+          <div>
+            <span class="overline">Office</span>
+            <span>3.48, Abacws Building, Cardiff University</span>
+          </div>
+        </li>
+        <!-- <li class="list-item">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg>
+          <div>
+            <span class="overline">ORCID</span>
+            <a href="{{ ORCID URL }}" target="_blank" rel="noopener">{{ ORCID ID }}</a>
+          </div>
+        </li> -->
+      </ul>
     </section>
   </main>
 
-  <footer>
-    <div class="container">
-      <p>Made with plain HTML/CSS/JS. Hosted on GitHub Pages.</p>
-    </div>
+  <footer class="container">
+    <p>© <span id="year">2026</span> Qiming Wang</p>
+    <!-- <p>Made with plain HTML/CSS/JS. Hosted on GitHub Pages.</p> -->
   </footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // Theme toggle: light <-> dark. The choice is saved; without one the page follows the OS.
+    var root = document.documentElement;
+    var themeToggle = document.getElementById("theme-toggle");
+    var osDark = matchMedia("(prefers-color-scheme: dark)");
+
+    function currentTheme() {
+      return root.dataset.theme || (osDark.matches ? "dark" : "light");
+    }
+    function syncThemeUi() {
+      var next = currentTheme() === "dark" ? "light" : "dark";
+      themeToggle.setAttribute("aria-label", "Switch to " + next + " theme");
+      var surface = getComputedStyle(root).getPropertyValue("--md-sys-color-surface").trim();
+      document.querySelectorAll('meta[name="theme-color"]').forEach(function (meta) { meta.content = surface; });
+    }
+    themeToggle.addEventListener("click", function () {
+      root.dataset.theme = currentTheme() === "dark" ? "light" : "dark";
+      try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
+      syncThemeUi();
+    });
+    osDark.addEventListener("change", syncThemeUi);
+    syncThemeUi();
+
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
